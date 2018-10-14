@@ -44,7 +44,7 @@ Next step, you have to integrate JS files to your HTML pages. You have to add so
             name: 'postData',
             options: {
                 apiKey: "d58e3582afa99040e27b92b13c8f2280",
-                URL: 'https://apidomein.com/save/point/'
+                URL: 'https://apidomain.com/save/point/'
             }
         }
     };
@@ -67,6 +67,17 @@ JS client looks for selectors from JSON (for example, `https://yourdomain.com/se
 #### StoreProvider
 
 **CSSClean** supports two variants for saving data to the persistent remote storage. This mechanism we call *dataStoreProvider*. You can save a result of works JS client to your custom URL (`dataStoreProvider.name = 'postData'`) or save to [Firebase Realtime Database](https://firebase.google.com/docs/database/) (`dataStoreProvider.name = 'firebase'`).
+
+For **postData** type you should by himself recieve and keep data to your own database. For example, in case with PHP your `https://apidomain.com/save/point/` should looks like:
+
+```php
+<?php
+header('Access-Control-Allow-Origin: *');
+$data = file_get_contents('php://input');
+// there you should save data to the DB
+```
+
+
 
 
 
