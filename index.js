@@ -13,7 +13,7 @@ function toBoolean(value) {
   return false;
 }
 
-cli.version('0.0.4');
+cli.version('1.0.0');
 
 cli
   .command('index <base> <file>')
