@@ -1,6 +1,6 @@
-# CSSClean
+# CSSClear
 
-CSSClean is a tool for removing unused CSS code from your code base. It like UnCSS, but more usable for non-static sites with huge stylesheets. 
+CSSClear is a tool for removing unused CSS code from your code base. It like [UnCSS](https://github.com/uncss/uncss), but more usable for non-static sites with huge stylesheets. 
 
 ## Installation
 
@@ -58,17 +58,17 @@ JS client looks for selectors from JSON (for example, `https://yourdomain.com/se
 
 - **storageKey** (String): Unique key for a page (by default may be URI)
 
-- **dataStoreProvider** (Object): options for configuration of remote storage
+- **dataStoreProvider** (Object): Data storage method configuration
 
-- **dataStoreProvider.name** (String): You should use one the the variants: `postData`, `firebase`
+- **dataStoreProvider.name** (String): Data storage method type. You should use one the the variants: `postData`, `firebase`
 
 - **dataStoreProvider.options** (Object): Object with configurations parameters for *dataStoreProvider*
 
 #### StoreProvider
 
-**CSSClean** supports two variants for saving data to the persistent remote storage. This mechanism we call *dataStoreProvider*. You can save a result of works JS client to your custom URL (`dataStoreProvider.name = 'postData'`) or save to [Firebase Realtime Database](https://firebase.google.com/docs/database/) (`dataStoreProvider.name = 'firebase'`).
+**CSSClean** supports two variants for saving data to the persistent remote storage. This mechanism we call *dataStoreProvider*. You can post the result of works JS client to your custom script on the server side (`dataStoreProvider.name = 'postData'`) or save to [Firebase Realtime Database](https://firebase.google.com/docs/database/) (`dataStoreProvider.name = 'firebase'`).
 
-For **postData** type, you should by himself receive and keep data to your own database. For example, in the case with PHP your `https://apidomain.com/save/point/` should look like:
+For **postData** type, you himself should receive and keep data to your own database. For example, in the case with PHP your `https://apidomain.com/save/point/` should look like:
 
 ```php
 <?php
