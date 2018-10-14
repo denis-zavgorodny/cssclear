@@ -52,13 +52,23 @@ Next step, you have to integrate JS files to your HTML pages. You have to add so
 <script type="module" src="path/to/csscleaner.bundle.js"></script>
 ```
 
-- **pathToSelectors** (String): URL path to JSON with CSS selectors (see *Init and get CSS selectors*)
+JS client looks for selectors from JSON (for example, `https://yourdomain.com/selectors.json`) on your HTML pages and keeps only 'live' of them.
+
+- **pathToSelectors** (String): URL path to JSON file with CSS selectors (see *Init and get CSS selectors*)
 
 - **storageKey** (String): Unique key for a page (by default may be URI)
 
 - **dataStoreProvider** (Object): options for configuration of remote storage
 
-- **dataStoreProvider.name** (String): You can use one the the variants: `postData`, `firebase`
+- **dataStoreProvider.name** (String): You should use one the the variants: `postData`, `firebase`
+
+- **dataStoreProvider.options** (Object): Object with configurations parameters for *dataStoreProvider*
+
+#### StoreProvider
+
+**CSSClean** supports two variants for saving data to the persistent remote storage. This mechanism we call *dataStoreProvider*. You can save a result of works JS client to your custom URL (`dataStoreProvider.name = 'postData'`) or save to [Firebase Realtime Database](https://firebase.google.com/docs/database/) (`dataStoreProvider.name = 'firebase'`).
+
+
 
 
 To be continued...
