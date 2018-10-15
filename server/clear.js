@@ -38,7 +38,7 @@ module.exports = function clear(baseDir, destDir, destFilterFile = 'clear.json',
         const { selector } = rule;
         selectors.push(...selector.replace('\n', '').split(','));
         const filteredSelector = selectors.map(el => el.trim()).filter((el) => {
-          const elAlternative = el.replace(/(>?:[\S]+)/g, '');
+          const elAlternative = el.replace(/(>?\s?:[\S]+)/g, '');
           return filteredCSS.reduce((acc, current) => {
             if (acc !== true) {
               return (current === el || current === elAlternative)
