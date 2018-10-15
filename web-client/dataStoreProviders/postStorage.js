@@ -3,8 +3,7 @@ import storageInterface from './interface';
 
 class firebaseStorage extends storageInterface {
   save(data) {
-    const timestamp = new Date().getTime();
-    const key = `${this.config.storageKey}_${timestamp}`;
+    const key = this.createKey();
     fetch(this.providerConfig.URL, {
       method: 'POST',
       headers: {
@@ -12,6 +11,7 @@ class firebaseStorage extends storageInterface {
       },
       body: JSON.stringify({
         key,
+        url: this.config.storageKey,
         data,
       }),
     }).then(() => {});

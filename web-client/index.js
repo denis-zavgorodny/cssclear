@@ -34,7 +34,6 @@ function doAction(storageClass) {
     setTimeout(() => {
       if (canCheckPage(pageKey)) {
         parse(store, pageKey);
-        alert(1);
       } else {
         console.info('You already check this page');
       }

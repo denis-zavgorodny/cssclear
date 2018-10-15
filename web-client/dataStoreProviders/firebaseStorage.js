@@ -13,8 +13,11 @@ class firebaseStorage extends storageInterface {
     });
   }
   save(data) {
-    const timestamp = new Date().getTime();
-    this.storage.ref(`${this.config.storageKey}_${timestamp}`).set(data);
+    const key = this.createKey();
+    this.storage.ref(key).set({
+      url: this.config.storageKey,
+      data,
+    });
   }
 }
 export default firebaseStorage;
