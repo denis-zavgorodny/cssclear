@@ -4,7 +4,7 @@ class storageInterface {
   constructor(config) {
     this.config = {
       ...config,
-      storageKey: config.storageKey ? config.storageKey : location.pathname, //.replace(/\//g, '%2F')
+      location: config.location ? config.location : location.pathname, //.replace(/\//g, '%2F')
     };
     this.providerConfig = config.dataStoreProvider.options;
   }
@@ -12,7 +12,7 @@ class storageInterface {
 
   createKey() {
     const timestamp = new Date().getTime();
-    return md5(`${this.config.storageKey}${timestamp}`);
+    return md5(`${this.config.location}${timestamp}`);
   }
 }
 

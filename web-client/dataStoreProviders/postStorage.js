@@ -11,7 +11,7 @@ class firebaseStorage extends storageInterface {
       },
       body: JSON.stringify({
         key,
-        url: this.config.storageKey,
+        url: this.config.location,
         data,
       }),
     }).then(() => {});

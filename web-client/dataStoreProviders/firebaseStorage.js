@@ -15,7 +15,7 @@ class firebaseStorage extends storageInterface {
   save(data) {
     const key = this.createKey();
     this.storage.ref(key).set({
-      url: this.config.storageKey,
+      url: this.config.location,
       data,
     });
   }

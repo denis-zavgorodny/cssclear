@@ -39,7 +39,6 @@ Next step, you have to integrate JS files to your HTML pages. You have to add so
 <script>
     var cssClear = {
         pathToSelectors: 'https://yourdomain.com/selectors.json',
-        storageKey: encodeURI(location.pathname),
         dataStoreProvider: {
             name: 'postData',
             options: {
@@ -56,7 +55,7 @@ JS client looks for selectors from JSON (for example, `https://yourdomain.com/se
 
 - **pathToSelectors** (String): URL path to JSON file with CSS selectors (see *Init and get CSS selectors*)
 
-- **storageKey** (String): Unique key for a page (by default may be URI)
+- **location** (String): Unique key for a page (by default may be URI)
 
 - **dataStoreProvider** (Object): Data storage method configuration
 
