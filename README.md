@@ -1,6 +1,6 @@
 # CSSClear
 
-CSSClear is a tool for removing unused CSS code from your code base. It like [UnCSS](https://github.com/uncss/uncss), but more usable for non-static sites with huge stylesheets. 
+CSSClear is a tool for removing unused CSS code from your code base. It's like [UnCSS](https://github.com/uncss/uncss), but more usable for non-static sites with huge stylesheets. 
 
 ## Installation
 
@@ -29,7 +29,7 @@ where:
 
 - **file** (String): Path to JSON file that will be created
 
-After this, you will have `JSON` file with all CSS selectors of your project.
+After this, you will receive `JSON` file with all CSS selectors of your project.
 
 ### Integrate with your HTML pages
 
@@ -60,15 +60,15 @@ JS client looks for selectors from JSON (for example, `https://yourdomain.com/se
 
 - **dataStoreProvider** (Object): Data storage method configuration
 
-- **dataStoreProvider.name** (String): Data storage method type. You should use one the the variants: `postData`, `firebase`
+- **dataStoreProvider.name** (String): Data storage method type. You should use one the variants: `postData`, `firebase`
 
 - **dataStoreProvider.options** (Object): Object with configurations parameters for *dataStoreProvider*
 
-#### StoreProvider
+#### dataStoreProvider
 
-**CSSClean** supports two variants for saving data to the persistent remote storage. This mechanism we call *dataStoreProvider*. You can post the result of works JS client to your custom script on the server side (`dataStoreProvider.name = 'postData'`) or save to [Firebase Realtime Database](https://firebase.google.com/docs/database/) (`dataStoreProvider.name = 'firebase'`).
+**CSSClean** supports two variants for saving data to the persistent remote storage. We call this mechanism *dataStoreProvider*. You can post the result of works JS client to your custom script on the server side (`dataStoreProvider.name = 'postData'`) or save to [Firebase Realtime Database](https://firebase.google.com/docs/database/) (`dataStoreProvider.name = 'firebase'`).
 
-For **postData** type, you himself should receive and keep data to your own database. For example, in the case with PHP your `https://apidomain.com/save/point/` should look like:
+For **postData** type, you should receive and save data to your own database. For example, in the case with PHP your `https://apidomain.com/save/point/` should look like:
 
 ```php
 <?php
