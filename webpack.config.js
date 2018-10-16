@@ -5,7 +5,6 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const plugins = [];
 const builtToPath = process.env.NODE_ENV === 'production' ? path.resolve(__dirname, 'www-build') : path.resolve(__dirname, 'www-test');
 
-
 if (process.env.NODE_ENV === 'production') {
   plugins.push(new BundleAnalyzerPlugin());
   fs.readdirSync(path.resolve(builtToPath)).map((file) => {

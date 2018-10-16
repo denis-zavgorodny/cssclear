@@ -3,6 +3,10 @@ import check from './cssLiveChecker';
 import dataStore from './dataStoreProviders/dataStore';
 import { canCheckPage, markThisPageAsCheck } from './canCheckPage';
 
+const url = new URL(document.currentScript.src);
+const dir = url.pathname.replace(/([a-z0-9-._]+).js/, "");
+__webpack_public_path__ = (dir + __webpack_public_path__);
+
 const pageKey = location.pathname;
 
 //resolve storage provider
