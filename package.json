@@ -39,5 +39,14 @@
   "engines": {
     "node": ">=9.0.0"
   },
+  "keywords": [
+    "clear",
+    "CSS",
+    "selector"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/denis-zavgorodny/cssclear.git"
+  },
   "engineStrict": true
 }
