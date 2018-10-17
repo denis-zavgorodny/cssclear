@@ -4,6 +4,7 @@ const cli = require('commander');
 const parser = require('./server/parse');
 const clear = require('./server/clear');
 const initProject = require('./server/initProject');
+const getVersion = require('./server/getVersion');
 
 function toBoolean(value) {
   if (value === 'true') {
@@ -12,7 +13,7 @@ function toBoolean(value) {
   return false;
 }
 
-cli.version('1.0.0');
+cli.version(getVersion());
 
 cli
   .command('index <base> <file>')
