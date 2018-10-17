@@ -1,6 +1,7 @@
 const postcss = require('postcss');
 const fs = require('fs');
 const clearDir = require('./clearDir');
+const normalizeSelectorsJSON = require('./normalizeSelectors');
 
 const cssRAW = [];
 const notBaseDir = new Error('Base directory is not exists');
@@ -13,8 +14,7 @@ module.exports = function clear(baseDir, destDir, destFilterFile = 'clear.json',
   if (!destDir) {
     throw notDestDir;
   }
-  
-  const filteredCSS = JSON.parse(fs.readFileSync(`${destFilterFile}`).toString());
+  const filteredCSS = normalizeSelectorsJSON(JSON.parse(fs.readFileSync(`${destFilterFile}`).toString()));
   if (fs.existsSync(destDir)) {
     clearDir(destDir);
   } else {
