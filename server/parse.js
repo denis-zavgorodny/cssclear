@@ -2,26 +2,22 @@ const postcss = require('postcss');
 const fs = require('fs');
 
 const prepareDir = require('./prepareDir');
+const folderWalker = require('./folderWalker');
 
 const badParams = new Error('Base directory not exists');
-const cssRAW = [];
 const selectors = [];
 
 module.exports = function parser(baseCSSDir, destSelectorFile = 'selectors.json') {
+  if (!baseCSSDir.match(/\/$/)) {
+    baseCSSDir += '/';
+  }
   if (!fs.existsSync(baseCSSDir)) {
     throw badParams;
   }
   
   prepareDir(destSelectorFile);
 
-  fs.readdirSync(baseCSSDir).forEach((file) => {
-    if (!fs.statSync(`${baseCSSDir}${file}`).isDirectory() && file.indexOf('.css') !== -1) {
-      cssRAW.push({
-        name: file,
-        data: fs.readFileSync(`${baseCSSDir}${file}`).toString(),
-      });
-    }
-  });
+  const cssRAW = folderWalker(baseCSSDir, []);
   const promises = [];
   cssRAW.map((el) => {
     const proc = postcss((ast) => {
@@ -33,6 +29,7 @@ module.exports = function parser(baseCSSDir, destSelectorFile = 'selectors.json'
     }).process(el.data, {
       from: el.name,
     }).then();
+
     promises.push(proc);
   });
   Promise.all(promises).then(() => {

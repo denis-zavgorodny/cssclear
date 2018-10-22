@@ -1,13 +1,22 @@
 const postcss = require('postcss');
 const fs = require('fs');
+const path = require('path');
+
 const clearDir = require('./clearDir');
+const prepareDir = require('./prepareDir');
+const folderWalker = require('./folderWalker');
 const normalizeSelectorsJSON = require('./normalizeSelectors');
 
-const cssRAW = [];
 const notBaseDir = new Error('Base directory is not exists');
 const notDestDir = new Error('Destination directory is not exists');
 
 module.exports = function clear(baseDir, destDir, destFilterFile = 'clear.json', createSourceMap = false) {
+  if (!baseDir.match(/\/$/)) {
+    baseDir += '/';
+  }
+  if (!destDir.match(/\/$/)) {
+    destDir += '/';
+  }
   if (!fs.existsSync(baseDir)) {
     throw notBaseDir;
   }
@@ -20,16 +29,7 @@ module.exports = function clear(baseDir, destDir, destFilterFile = 'clear.json',
   } else {
     fs.mkdirSync(destDir);
   }
-  
-  fs.readdirSync(baseDir).forEach((file) => {
-    if (!fs.statSync(`${baseDir}${file}`).isDirectory() && file.indexOf('.css') != -1) {
-      cssRAW.push({
-        name: file,
-        baseDir,
-        data: fs.readFileSync(`${baseDir}${file}`).toString(),
-      });
-    }
-  });
+  const cssRAW = folderWalker(baseDir, [], baseDir);
   
   cssRAW.map((style) => {
     postcss((ast) => {  
@@ -57,9 +57,11 @@ module.exports = function clear(baseDir, destDir, destFilterFile = 'clear.json',
       to: `${destDir}${style.name}`,
       map: createSourceMap ? { inline: false } : false,
     }).then((result) => {
-      fs.writeFileSync(`${destDir}${style.name}`, result.css);
+      const destinationPath = path.normalize(destDir + (style.dir ? `${style.dir}/` : '') + style.name);
+      prepareDir(destinationPath);
+      fs.writeFileSync(destinationPath, result.css);
       if (createSourceMap) {
-        fs.writeFileSync(`${destDir}${style.name}.map`, result.map);
+        fs.writeFileSync(`${destinationPath}.map`, result.map);
       }
     });
     return null;
