@@ -48,7 +48,7 @@ Next step, you have to integrate JS files to your HTML pages. You have to add so
         }
     };
 </script>
-<script type="module" src="path/to/csscleaner.bundle.js"></script>
+<script src="path/to/csscleaner.bundle.js"></script>
 ```
 
 JS client looks for selectors from JSON (for example, `https://yourdomain.com/selectors.json`) on your HTML pages and keeps only 'live' of them.
